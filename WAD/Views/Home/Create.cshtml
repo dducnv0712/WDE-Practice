@@ -1,0 +1,79 @@
+﻿@model WAD.Models.Exam
+@{
+    ViewBag.Title = "Create";
+}
+
+<section>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col"> </div>
+            <div class="col-md-7">
+                <div class="card">
+                    <div class="card-header">
+                        @Html.ActionLink("Exam List", "Index", "Home")
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.AntiForgeryToken()
+
+                        <div class="mb-3">
+                            @Html.LabelFor(m => m.examSubject, new { @class = "form-label" })
+                            @Html.DropDownListFor(m => m.examSubject, new List<SelectListItem>
+                                  {
+                                     new SelectListItem{ Text="PHP", Value = "PHP"},
+                                     new SelectListItem{ Text="JAVA", Value = "JAVA"},
+                                     new SelectListItem{ Text="C#", Value = "C#"}
+                                  }, "Chọn", new { @class = "form-select" })           
+                            @Html.ValidationMessageFor(m => m.examSubject, "", new { @class = "text-danger" })
+                        </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    @Html.LabelFor(m => m.startTime, new { @class = "form-label" })
+                                    @Html.TextBoxFor(m => m.startTime, new { type = "time", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.startTime, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-8">
+                                    @Html.LabelFor(m => m.examDate, new { @class = "form-label" })
+                                    @Html.TextBoxFor(m => m.examDate, new { type = "date", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.examDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.examDuration, new { @class = "form-label" })
+                                    @Html.TextBoxFor(m => m.examDuration, new { type = "time", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.examDuration, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.classRoom, new { @class = "form-label" })
+                                    @Html.DropDownListFor(m => m.classRoom, new List<SelectListItem>
+                                       {
+                                          new SelectListItem{ Text="A08", Value = "A08" },
+                                          new SelectListItem{ Text="A09", Value = "A09" },
+                                          new SelectListItem{ Text="A10", Value = "A10" }
+                                       }, "Chọn", new { @class = "form-select" })
+                                  
+                                    @Html.ValidationMessageFor(m => m.classRoom, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                @Html.LabelFor(m => m.facully, new { @class = "form-label" })
+                                @Html.DropDownListFor(m => m.facully, new List<SelectListItem>
+                                 {
+                                    new SelectListItem{ Text="Đào Hồng Luyến", Value = "Đào Hồng Luyến" },
+                                    new SelectListItem{ Text="Trịnh Quang Hoà", Value = "Trịnh Quang Hoà" },
+                                 },"Chọn",new { @class= "form-select" })
+                                @Html.ValidationMessageFor(m => m.facully, "", new { @class = "text-danger" })
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col"> </div>
+        </div>
+    </div>
+</section>
+
